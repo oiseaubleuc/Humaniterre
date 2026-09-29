@@ -20,14 +20,16 @@ export default function ProjectenPage() {
   return (
     <main id="contenu">
       <PageIntro
+        className="bg-[#015734]"
         eyebrow="Terrain"
         title="Projets"
         text="Les photos des missions en Guinée et au Bangladesh."
       />
 
+      <section className="bg-[#258071]">
       <Container className="py-12 sm:py-16">
-        <h2 className="font-display text-3xl italic text-[#d5e09a]">Guinée</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-[#d5dcc0]">
+        <h2 className="font-display text-3xl italic text-white">Guinée</h2>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-[#f3faf6]">
           Une mission en cours : eau, éclairage et rencontres avec les habitants.
         </p>
         <div className="mt-8">
@@ -36,8 +38,8 @@ export default function ProjectenPage() {
       </Container>
 
       <Container className="pb-4 sm:pb-8">
-        <h2 className="font-display text-3xl italic text-[#d5e09a]">Bangladesh</h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-[#d5dcc0]">
+        <h2 className="font-display text-3xl italic text-white">Bangladesh</h2>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-[#f3faf6]">
           Une mission en cours : classes, colis et rencontres avec les habitants.
         </p>
         <div className="mt-8">
@@ -64,6 +66,7 @@ export default function ProjectenPage() {
           })}
         </ul>
       </Container>
+      </section>
 
       <section className="bg-white py-3" aria-label="Nos partenaires">
         <PartnerLoop />
