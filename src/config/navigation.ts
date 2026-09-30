@@ -5,4 +5,4 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-export const donateHref = "/doneren";
+export const donateHref = "/don";

@@ -3,18 +3,18 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { donateHref, navLinks } from "@/config/navigation";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { Button } from "@/components/ui/Button";
-import { Logo } from "@/components/ui/Logo";
 
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     setOpen(false);
+    setSearchOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -29,23 +29,27 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#8b9a56]/30 bg-[#2f3a22]/95 backdrop-blur-md dark:border-[#8b9a56]/20 dark:bg-[#0c1914]/95">
+    <header className="sticky top-0 z-50 bg-[var(--green-900)] text-[var(--on-dark)]">
       <a
         href="#contenu"
-        className="absolute left-4 top-3 z-10 -translate-y-20 rounded-full bg-[#8b9a56] px-4 py-2 text-sm text-[#0c1914] transition focus:translate-y-0"
+        className="absolute left-4 top-3 z-10 -translate-y-20 rounded-full bg-[var(--lime)] px-4 py-2 text-sm font-semibold text-[var(--green-900)] transition focus:translate-y-0"
       >
         Aller au contenu
       </a>
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5 sm:px-8">
+      <div className="mx-auto flex h-[76px] max-w-[1200px] items-center justify-between gap-3 px-4">
         <Link
           href="/"
-          className="rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8b9a56]"
-          aria-label="HUMANITERRE, retour à l'accueil"
+          className="flex min-h-11 items-center gap-3 rounded-full"
+          aria-label="Collectif Humaniterre, retour à l'accueil"
         >
-          <Logo />
+          <img
+            src="/images/logo-dark.png"
+            alt=""
+            className="size-11 object-contain"
+          />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:gap-8 md:flex" aria-label="Navigation principale">
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Navigation principale">
           {navLinks.map((link) => (
             <NavLink key={link.href} href={link.href} pathname={pathname}>
               {link.label}
@@ -53,22 +57,46 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <ThemeToggle />
-          <Button href={donateHref}>Nous soutenir</Button>
+          <form action="/projecten" method="get" className="hidden items-center lg:flex" role="search">
+            {searchOpen ? (
+              <input
+                name="q"
+                type="search"
+                placeholder="Rechercher"
+                aria-label="Rechercher"
+                autoFocus
+                className="h-11 w-40 rounded-full border border-white/20 bg-white/10 px-3 text-sm text-[var(--on-dark)] outline-none placeholder:text-[var(--on-dark-muted)]"
+              />
+            ) : null}
+            <button
+              type={searchOpen ? "submit" : "button"}
+              aria-label="Rechercher"
+              aria-expanded={searchOpen}
+              onClick={() => {
+                if (!searchOpen) setSearchOpen(true);
+              }}
+              className="inline-flex size-11 items-center justify-center rounded-full text-[var(--on-dark)] hover:bg-white/10"
+            >
+              <Search className="size-5" aria-hidden="true" />
+            </button>
+          </form>
+          <Link
+            href={donateHref}
+            className="hidden min-h-11 items-center rounded-full bg-[var(--lime)] px-5 text-sm font-semibold text-[var(--green-900)] transition hover:brightness-95 sm:inline-flex"
+          >
+            Faire un don
+          </Link>
           <button
             type="button"
-            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-[#f3f5e8] transition hover:bg-[#15261e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b9a56] md:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full text-[var(--on-dark)] hover:bg-white/10 md:hidden"
             aria-expanded={open}
             aria-controls="menu-mobile"
             onClick={() => setOpen((current) => !current)}
           >
             <span className="sr-only">{open ? "Fermer le menu" : "Ouvrir le menu"}</span>
-            {open ? (
-              <X className="size-5" aria-hidden="true" />
-            ) : (
-              <Menu className="size-5" aria-hidden="true" />
-            )}
+            {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -76,9 +104,21 @@ export function Navbar() {
       {open ? (
         <nav
           id="menu-mobile"
-          className="border-t border-[#8b9a56]/30 bg-[#2f3a22] px-5 py-4 dark:border-[#8b9a56]/20 dark:bg-[#0c1914] md:hidden"
+          className="border-t border-white/10 bg-[var(--green-900)] px-4 py-4 md:hidden"
           aria-label="Menu mobile"
         >
+          <form action="/projecten" method="get" className="mb-3" role="search">
+            <label htmlFor="recherche-mobile" className="sr-only">
+              Rechercher
+            </label>
+            <input
+              id="recherche-mobile"
+              name="q"
+              type="search"
+              placeholder="Rechercher"
+              className="h-11 w-full rounded-full border border-white/20 bg-white/10 px-4 text-sm text-[var(--on-dark)] outline-none placeholder:text-[var(--on-dark-muted)]"
+            />
+          </form>
           <ul className="flex flex-col gap-1">
             {navLinks.map((link) => {
               const active = isActive(pathname, link.href);
@@ -87,10 +127,10 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     aria-current={active ? "page" : undefined}
-                    className={`block rounded-xl px-3 py-3 text-base transition ${
+                    className={`block min-h-11 rounded-xl px-3 py-3 text-base ${
                       active
-                        ? "bg-[#15261e] font-semibold text-[#d5e09a]"
-                        : "text-[#f3f5e8] hover:bg-[#15261e]"
+                        ? "font-semibold text-[var(--lime)] underline decoration-[var(--lime)] underline-offset-4"
+                        : "text-[var(--on-dark)]"
                     }`}
                   >
                     {link.label}
@@ -98,6 +138,14 @@ export function Navbar() {
                 </li>
               );
             })}
+            <li>
+              <Link
+                href={donateHref}
+                className="mt-2 inline-flex min-h-11 items-center rounded-full bg-[var(--lime)] px-5 text-sm font-semibold text-[var(--green-900)]"
+              >
+                Faire un don
+              </Link>
+            </li>
           </ul>
         </nav>
       ) : null}
@@ -120,10 +168,10 @@ function NavLink({
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`relative text-sm transition-colors duration-200 after:absolute after:-bottom-1 after:left-0 after:h-px after:bg-[#d5e09a] after:transition-all after:duration-300 ${
+      className={`inline-flex min-h-11 items-center text-sm ${
         active
-          ? "font-semibold text-[#d5e09a] after:w-full"
-          : "text-[#f3f5e8]/75 after:w-0 hover:text-[#d5e09a] hover:after:w-full"
+          ? "font-semibold text-[var(--lime)] underline decoration-[var(--lime)] underline-offset-8"
+          : "text-[var(--on-dark)] hover:text-[var(--lime)]"
       }`}
     >
       {children}
@@ -132,5 +180,6 @@ function NavLink({
 }
 
 function isActive(pathname: string, href: string) {
-  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
 }

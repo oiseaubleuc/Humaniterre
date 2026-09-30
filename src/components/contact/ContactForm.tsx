@@ -21,42 +21,42 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4" noValidate={false}>
-      <label className="block text-sm font-medium text-[#f3f5e8]">
+      <label className="block text-sm font-medium text-[var(--text)]">
         Nom
         <input
           name="name"
           required
           autoComplete="name"
-          className="mt-1.5 w-full rounded-xl border border-[#8b9a56]/40 bg-[#15261e] px-3 py-3 text-[#f3f5e8] outline-none transition focus:border-[#8b9a56] "
+          className="mt-1.5 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-3 text-[var(--text)] outline-none"
         />
       </label>
-      <label className="block text-sm font-medium text-[#f3f5e8]">
+      <label className="block text-sm font-medium text-[var(--text)]">
         E-mail
         <input
           name="email"
           type="email"
           required
           autoComplete="email"
-          className="mt-1.5 w-full rounded-xl border border-[#8b9a56]/40 bg-[#15261e] px-3 py-3 text-[#f3f5e8] outline-none transition focus:border-[#8b9a56] "
+          className="mt-1.5 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-3 text-[var(--text)] outline-none"
         />
       </label>
-      <label className="block text-sm font-medium text-[#f3f5e8]">
+      <label className="block text-sm font-medium text-[var(--text)]">
         Message
         <textarea
           name="message"
           required
           rows={6}
-          className="mt-1.5 w-full resize-y rounded-xl border border-[#8b9a56]/40 bg-[#15261e] px-3 py-3 text-[#f3f5e8] outline-none transition focus:border-[#8b9a56] "
+          className="mt-1.5 w-full resize-y rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-3 text-[var(--text)] outline-none"
         />
       </label>
       <button
         type="submit"
-        className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#8b9a56] px-5 py-3 text-sm font-semibold text-[#0c1914] transition duration-200 hover:bg-[#a3b56a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d5e09a]"
+        className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--green-700)] px-5 py-3 text-sm font-semibold text-[var(--on-dark)]"
       >
         Envoyer
       </button>
       {notice ? (
-        <p role="status" className="text-sm text-[#d5e09a]">
+        <p role="status" className="text-sm text-[var(--green-700)]">
           {notice}
         </p>
       ) : null}

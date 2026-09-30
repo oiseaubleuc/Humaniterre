@@ -2,29 +2,27 @@ import Link from "next/link";
 import { vzw } from "@/config/vzwData";
 import { donateHref, navLinks } from "@/config/navigation";
 import { Container } from "@/components/ui/Container";
-import { Logo } from "@/components/ui/Logo";
 
-const footerLinks = [...navLinks, { href: donateHref, label: "Don" }];
+const footerLinks = [...navLinks, { href: donateHref, label: "Faire un don" }];
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#8b9a56]/30 bg-[#15261e] text-[#e7eedd] dark:border-[#8b9a56]/20 dark:bg-[#08110e]">
-      <Container className="grid gap-8 py-8 sm:grid-cols-3 sm:items-start sm:py-10">
+    <footer className="bg-[var(--green-900)] text-[var(--on-dark)]">
+      <Container className="grid gap-10 py-12 sm:grid-cols-3 sm:py-16">
         <div>
-          <Logo />
-          <p className="mt-4 text-xs text-[#c5d0b0]/80">
-            © {new Date().getFullYear()} {vzw.legalName}
-          </p>
+          <Link href="/" className="inline-flex items-center gap-3" aria-label="Collectif Humaniterre, accueil">
+            <img src="/images/logo-dark.png" alt="" className="size-12 object-contain" />
+            <span className="font-display text-xl">Collectif Humaniterre</span>
+          </Link>
+          <p className="mt-4 max-w-xs text-sm leading-6 text-[var(--on-dark-muted)]">{vzw.slogan}</p>
         </div>
 
         <nav aria-label="Pied de page">
-          <ul className="flex flex-col gap-2">
+          <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--lime)]">Navigation</p>
+          <ul className="mt-4 flex flex-col gap-2">
             {footerLinks.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm text-[#e7eedd] transition hover:text-[#d5e09a]"
-                >
+                <Link href={link.href} className="inline-flex min-h-11 items-center text-sm hover:text-[var(--lime)]">
                   {link.label}
                 </Link>
               </li>
@@ -32,25 +30,28 @@ export function Footer() {
           </ul>
         </nav>
 
-        <div className="text-sm">
-          <a
-            href={`mailto:${vzw.email}`}
-            className="text-[#e7eedd] transition hover:text-[#d5e09a]"
-          >
+        <div>
+          <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--lime)]">Contact</p>
+          <a href={`mailto:${vzw.email}`} className="mt-4 inline-flex min-h-11 items-center text-sm hover:text-[var(--lime)]">
             {vzw.email}
           </a>
-          <p className="mt-2 text-[#c5d0b0]">BCE {vzw.kbo}</p>
+          <p className="text-sm text-[var(--on-dark-muted)]">BCE {vzw.kbo}</p>
           <a
             href={vzw.instagram}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram de Collectif Humaniterre"
-            className="mt-4 inline-flex size-10 items-center justify-center rounded-full bg-[#8b9a56]/20 text-[#e7eedd] transition duration-200 hover:-translate-y-0.5 hover:bg-[#8b9a56] hover:text-[#0c1914]"
+            className="mt-4 inline-flex size-11 items-center justify-center rounded-full border border-white/20 text-[var(--on-dark)] transition hover:bg-[var(--lime)] hover:text-[var(--green-900)]"
           >
             <InstagramIcon />
           </a>
         </div>
       </Container>
+      <div className="border-t border-white/10">
+        <Container className="py-5">
+          <p className="text-xs text-[var(--on-dark-muted)]">© {new Date().getFullYear()} {vzw.legalName}</p>
+        </Container>
+      </div>
     </footer>
   );
 }

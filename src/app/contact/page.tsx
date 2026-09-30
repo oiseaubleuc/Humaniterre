@@ -26,24 +26,24 @@ export default function ContactPage() {
             <li>
               <a
                 href={`mailto:${vzw.email}`}
-                className="inline-flex items-start gap-3 text-[#f3f5e8] transition hover:text-[#d5e09a]"
+                className="inline-flex min-h-11 items-start gap-3 text-[var(--text)] transition hover:text-[var(--green-700)]"
               >
-                <Mail className="mt-0.5 size-4 text-[#d5e09a]" aria-hidden="true" />
+                <Mail className="mt-0.5 size-4 text-[var(--green-700)]" aria-hidden="true" />
                 {vzw.email}
               </a>
             </li>
             <li>
               <a
                 href={vzw.phoneHref}
-                className="inline-flex items-start gap-3 text-[#f3f5e8] transition hover:text-[#d5e09a]"
+                className="inline-flex min-h-11 items-start gap-3 text-[var(--text)] transition hover:text-[var(--green-700)]"
               >
-                <Phone className="mt-0.5 size-4 text-[#d5e09a]" aria-hidden="true" />
+                <Phone className="mt-0.5 size-4 text-[var(--green-700)]" aria-hidden="true" />
                 {vzw.phone}
               </a>
             </li>
-            <li className="text-[#c5d0b0]">
+            <li className="text-[var(--text-muted)]">
               N° d&apos;entreprise (BCE){" "}
-              <span className="font-medium text-[#f3f5e8]">{vzw.kbo}</span>
+              <span className="font-medium text-[var(--text)]">{vzw.kbo}</span>
             </li>
           </ul>
         </address>

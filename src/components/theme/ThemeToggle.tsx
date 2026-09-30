@@ -25,7 +25,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Changer le thème"
-      className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-[#f3f5e8] transition duration-200 hover:bg-[#15261e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b9a56]"
+      className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-[var(--on-dark)] transition duration-200 hover:bg-white/10"
     >
       <Sun className="hidden size-5 dark:block" aria-hidden="true" />
       <Moon className="size-5 dark:hidden" aria-hidden="true" />

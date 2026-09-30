@@ -1,65 +1,112 @@
-import { donateHref } from "@/config/navigation";
-import { vzw } from "@/config/vzwData";
-import { about, values } from "@/content/copy";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Montserrat } from "next/font/google";
+import styles from "./home.module.css";
+// Photo d'accueil importée directement : Next.js connaît sa taille exacte,
+// elle s'affiche donc en entier, sans recadrage ni agrandissement.
+import heroImage from "../../public/images/accueil-chemin.jpg";
 
-const valueIcons = ["01", "02", "03", "04"];
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--home-font",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Collectif Humaniterre ASBL",
+  description:
+    "L'eau potable, l'électricité : une norme pour nous, une urgence pour nos bénéficiaires. Missions en Guinée et au Bangladesh.",
+};
+
+const VALEURS = [
+  {
+    n: "01",
+    titre: "Rigueur",
+    texte: "Chaque action est préparée avec soin, pour que l'aide tienne dans la durée.",
+  },
+  {
+    n: "02",
+    titre: "Transparence",
+    texte: "Les moyens confiés à l'ASBL restent lisibles, du don jusqu'au terrain.",
+  },
+  {
+    n: "03",
+    titre: "Éthique",
+    texte: "Nous agissons avec respect pour les personnes et pour les partenaires.",
+  },
+  {
+    n: "04",
+    titre: "Autonomie",
+    texte: "L'urgence est traitée vite, sans installer une dépendance.",
+  },
+];
+
+function Arrow() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.arrow}>
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
 
 export default function HomePage() {
   return (
-    <main id="contenu">
-      <section className="bg-[#15261e]">
-        <img
-          src="/images/accueil-chemin.jpg"
-          alt="Membres du collectif marchent avec des enfants sur un sentier, en Guinée."
-          className="block h-auto w-full"
+    <main className={`${styles.page} ${montserrat.variable}`}>
+      {/* Photo d'en-tête */}
+      <div className={styles.heroImage}>
+        <Image
+          src={heroImage}
+          alt="Des pas sur une piste en terre, sur le terrain"
+          priority
+          unoptimized
+          placeholder="blur"
+          className={styles.heroImg}
         />
-        <Container className="py-10 sm:py-14">
-          <div className="max-w-2xl text-[#f4f6ee]">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sand">
-              {vzw.legalName}
-            </p>
-            <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              {vzw.slogan}
-            </h1>
-            <div className="mt-8">
-              <Button href={donateHref} showArrow>
-                Nous soutenir
-              </Button>
-            </div>
-          </div>
-        </Container>
+      </div>
+
+      {/* Bandeau titre */}
+      <section className={styles.band}>
+        <div className={styles.container}>
+          <p className={styles.eyebrow}>Collectif Humaniterre ASBL</p>
+          <h1 className={styles.title}>
+            L&apos;eau potable, l&apos;électricité : une norme pour nous, une urgence
+            pour nos bénéficiaires.
+          </h1>
+          <Link href="/don" className={styles.linkButton}>
+            Nous soutenir <Arrow />
+          </Link>
+        </div>
       </section>
 
-      <section className="py-16 sm:py-24">
-        <Container>
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl italic text-[#d5e09a] sm:text-4xl">
-              Qui sommes-nous ?
-            </h2>
-            <p className="mt-6 text-base leading-7 text-[#d5dcc0]">{about.intro}</p>
-          </div>
+      {/* Qui sommes-nous */}
+      <section className={styles.about}>
+        <div className={styles.container}>
+          <h2 className={styles.aboutTitle}>Qui sommes-nous ?</h2>
+          <p className={styles.aboutText}>
+            Le Collectif Humaniterre est une association née d&apos;une conviction
+            forte : l&apos;impact humanitaire est décuplé lorsque les compétences, les
+            énergies et les ressources sont unies.
+          </p>
 
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value, index) => (
-              <li
-                key={value.title}
-                className="rounded-3xl border border-[#8b9a56]/30 bg-[#15261e] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#d5e09a]/50"
-              >
-                <p className="font-display text-sm text-[#d5e09a]">{valueIcons[index]}</p>
-                <h3 className="mt-3 font-display text-xl text-[#f3f5e8]">{value.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#d5dcc0]">{value.text}</p>
+          <ul className={styles.values}>
+            {VALEURS.map((v) => (
+              <li key={v.n} className={styles.valueCard}>
+                <span className={styles.valueNumber}>{v.n}</span>
+                <h3 className={styles.valueTitle}>{v.titre}</h3>
+                <p className={styles.valueText}>{v.texte}</p>
               </li>
             ))}
           </ul>
 
-          <div className="mt-12 flex justify-center">
-            <Button href={donateHref} variant="forest" showArrow>
-              Nous soutenir
-            </Button>
+          <div className={styles.center}>
+            <Link href="/don" className={styles.pillButton}>
+              Nous soutenir <Arrow />
+            </Link>
           </div>
-        </Container>
+        </div>
       </section>
     </main>
   );

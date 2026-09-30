@@ -4,6 +4,12 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
+  async rewrites() {
+    return [{ source: "/projets", destination: "/projecten" }];
+  },
 };
 
 export default nextConfig;

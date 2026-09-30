@@ -4,25 +4,37 @@ type PageIntroProps = {
   eyebrow: string;
   title: string;
   text: string;
+  align?: "start" | "center";
   className?: string;
 };
 
-export function PageIntro({ eyebrow, title, text, className }: PageIntroProps) {
+export function PageIntro({
+  eyebrow,
+  title,
+  text,
+  align = "start",
+  className,
+}: PageIntroProps) {
+  const centered = align === "center";
+
   return (
-    <header
-      className={
-        className ??
-        "border-b border-[#8b9a56]/30 bg-[#2f3a22] dark:border-[#8b9a56]/20 dark:bg-[#101c16]"
-      }
-    >
-      <Container className="py-14 sm:py-20">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d8f3e4]">
-          {eyebrow}
-        </p>
-        <h1 className="mt-3 max-w-3xl font-display text-4xl text-white sm:text-5xl">
+    <header className={className ?? "bg-[var(--green-900)] text-[var(--on-dark)]"}>
+      <Container className={`py-16 sm:py-24 ${centered ? "text-center" : ""}`}>
+        <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--lime)]">{eyebrow}</p>
+        <h1
+          className={`mt-4 font-display text-4xl leading-tight text-[var(--on-dark)] sm:text-6xl ${
+            centered ? "mx-auto max-w-3xl" : "max-w-3xl"
+          }`}
+        >
           {title}
         </h1>
-        <p className="mt-5 max-w-2xl text-base leading-7 text-[#e7f6ee]">{text}</p>
+        <p
+          className={`mt-5 max-w-2xl text-base leading-7 text-[var(--on-dark-muted)] ${
+            centered ? "mx-auto" : ""
+          }`}
+        >
+          {text}
+        </p>
       </Container>
     </header>
   );
