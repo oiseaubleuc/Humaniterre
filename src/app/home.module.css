@@ -192,6 +192,19 @@
   outline-offset: 3px;
 }
 
+:global(html.dark) .about {
+  background: #0e2b1f;
+}
+
+:global(html.dark) .valueCard {
+  background: #15382a;
+}
+
+:global(html.dark) .aboutText,
+:global(html.dark) .valueText {
+  color: #d5dcc0;
+}
+
 /* ---------- Tablette ---------- */
 
 @media (max-width: 760px) {

@@ -62,13 +62,6 @@ export default function DonPage() {
                 </svg>
                 Confirmation envoyée par email après chaque don
               </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M3 12a9 9 0 1 0 3-6.7" />
-                  <path d="M3 4v5h5" />
-                </svg>
-                Don mensuel modifiable ou annulable à tout moment
-              </li>
             </ul>
           </div>
 
@@ -142,22 +135,6 @@ export default function DonPage() {
         <div className={styles.twoCol}>
           <h2 className={styles.sectionTitle}>Questions fréquentes</h2>
           <div className={styles.faq}>
-            <details>
-              <summary>Mon don est-il déductible des impôts ?</summary>
-              <p>
-                {/* À compléter selon l'agrément de l'ASBL pour les attestations fiscales. */}
-                Contactez-nous à info@collectif-humaniterre.be pour toute
-                question sur les attestations fiscales.
-              </p>
-            </details>
-            <details>
-              <summary>Comment arrêter mon don mensuel ?</summary>
-              <p>
-                Chaque email de confirmation contient un lien vers votre espace
-                donateur, où vous pouvez modifier le montant ou arrêter le don
-                en un clic.
-              </p>
-            </details>
             <details>
               <summary>Le paiement en ligne est-il sûr ?</summary>
               <p>

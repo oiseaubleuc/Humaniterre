@@ -4,6 +4,7 @@ import Stripe from "stripe";
 function getStripe() {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) {
+    console.error("Stripe checkout error", "STRIPE_SECRET_KEY manquante");
     throw new Error("STRIPE_SECRET_KEY manquante");
   }
   return new Stripe(key);
@@ -21,14 +22,13 @@ export async function POST(request: Request) {
   }
 
   const amount = Number(body.amount);
-  const frequency = body.frequency === "monthly" ? "monthly" : "once";
   const email = String(body.email ?? "").trim();
   const name = String(body.name ?? "").trim().slice(0, 100);
 
   if (!Number.isInteger(amount) || amount < MIN || amount > MAX) {
     return NextResponse.json(
       { error: "Choisissez un montant entre 1 € et 10 000 €." },
-      { status: 400 }
+      { status: 400 },
     );
   }
   if (!/^\S+@\S+\.\S+$/.test(email)) {
@@ -36,60 +36,60 @@ export async function POST(request: Request) {
   }
 
   const appUrl = process.env.APP_URL ?? new URL(request.url).origin;
-  const unitAmount = amount * 100; // Stripe travaille en centimes
-  const metadata = { frequency, donor_name: name };
+  const unitAmount = amount * 100;
+  const metadata = { donor_name: name };
+  const productImages = appUrl.startsWith("https://") ? [`${appUrl}/images/accueil-chemin.jpg`] : undefined;
 
   try {
-    const session =
-      frequency === "monthly"
-        ? await getStripe().checkout.sessions.create({
-            mode: "subscription",
-            payment_method_types: ["card", "sepa_debit"],
-            line_items: [
-              {
-                quantity: 1,
-                price_data: {
-                  currency: "eur",
-                  unit_amount: unitAmount,
-                  recurring: { interval: "month" },
-                  product_data: { name: "Don mensuel à Collectif Humaniterre" },
-                },
-              },
-            ],
-            customer_email: email,
-            metadata,
-            subscription_data: { metadata },
-            locale: "fr",
-            success_url: `${appUrl}/don/merci?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${appUrl}/don#formulaire`,
-          })
-        : await getStripe().checkout.sessions.create({
-            mode: "payment",
-            payment_method_types: ["card", "bancontact"],
-            line_items: [
-              {
-                quantity: 1,
-                price_data: {
-                  currency: "eur",
-                  unit_amount: unitAmount,
-                  product_data: { name: "Don à Collectif Humaniterre" },
-                },
-              },
-            ],
-            customer_email: email,
-            metadata,
-            payment_intent_data: { metadata },
-            locale: "fr",
-            success_url: `${appUrl}/don/merci?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${appUrl}/don#formulaire`,
-          });
+    const session = await getStripe().checkout.sessions.create({
+      mode: "payment",
+      submit_type: "donate",
+      payment_method_types: ["card", "bancontact"],
+      line_items: [
+        {
+          quantity: 1,
+          price_data: {
+            currency: "eur",
+            unit_amount: unitAmount,
+            product_data: {
+              name: "Don à Collectif Humaniterre",
+              ...(productImages ? { images: productImages } : {}),
+            },
+          },
+        },
+      ],
+      customer_email: email,
+      metadata,
+      payment_intent_data: { metadata },
+      locale: "fr",
+      success_url: `${appUrl}/don/merci?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${appUrl}/don#formulaire`,
+    });
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    console.error("Stripe checkout error", error);
+    const stripeError = error as {
+      type?: string;
+      code?: string;
+      message?: string;
+      param?: string;
+    };
+    console.error(
+      "Stripe checkout error",
+      stripeError.type,
+      stripeError.code,
+      stripeError.message,
+      stripeError.param,
+    );
+    const devDetail =
+      process.env.NODE_ENV !== "production" && stripeError.message
+        ? ` ${stripeError.message}`
+        : "";
     return NextResponse.json(
-      { error: "Le paiement n'a pas pu démarrer. Réessayez dans un instant." },
-      { status: 500 }
+      {
+        error: `Le paiement n'a pas pu démarrer. Réessayez dans un instant.${devDetail}`,
+      },
+      { status: 500 },
     );
   }
 }

@@ -7,10 +7,7 @@ const PRESETS = [10, 25, 50, 100];
 const MIN = 1;
 const MAX = 10000;
 
-type Frequency = "once" | "monthly";
-
 export default function DonationForm() {
-  const [frequency, setFrequency] = useState<Frequency>("once");
   const [preset, setPreset] = useState<number | null>(25);
   const [custom, setCustom] = useState("");
   const [name, setName] = useState("");
@@ -34,9 +31,7 @@ export default function DonationForm() {
   const amount = preset ?? (parseInt(custom, 10) || 0);
   const amountIsValid = amount >= MIN && amount <= MAX;
 
-  const buttonLabel = amountIsValid
-    ? `Donner ${amount} €${frequency === "monthly" ? " par mois" : ""}`
-    : "Choisissez un montant";
+  const buttonLabel = amountIsValid ? `Donner ${amount} €` : "Choisissez un montant";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -58,7 +53,6 @@ export default function DonationForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount,
-          frequency,
           name: name.trim(),
           email: email.trim(),
         }),
@@ -77,25 +71,6 @@ export default function DonationForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
-      <div className={styles.segmented} role="group" aria-label="Type de don">
-        <button
-          type="button"
-          aria-pressed={frequency === "once"}
-          className={frequency === "once" ? styles.segmentActive : styles.segment}
-          onClick={() => setFrequency("once")}
-        >
-          Don unique
-        </button>
-        <button
-          type="button"
-          aria-pressed={frequency === "monthly"}
-          className={frequency === "monthly" ? styles.segmentActive : styles.segment}
-          onClick={() => setFrequency("monthly")}
-        >
-          Don mensuel
-        </button>
-      </div>
-
       <fieldset className={styles.fieldset}>
         <legend className={styles.legend}>Choisissez un montant</legend>
         <div className={styles.amounts}>

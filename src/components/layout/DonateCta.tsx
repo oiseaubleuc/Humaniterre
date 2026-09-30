@@ -12,7 +12,7 @@ export function DonateCta() {
             Chaque don devient une action sur le terrain.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--on-dark-muted)]">
-            Don unique ou mensuel, en ligne ou par virement sans frais sur le compte {vzw.ibanDisplay}.
+            Don en ligne en quelques secondes, en ligne ou par virement sans frais sur le compte {vzw.ibanDisplay}.
           </p>
           <Link
             href={`${donateHref}#don`}
