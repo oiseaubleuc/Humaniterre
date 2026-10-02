@@ -38,7 +38,7 @@ export async function POST(request: Request) {
   const appUrl = process.env.APP_URL ?? new URL(request.url).origin;
   const unitAmount = amount * 100;
   const metadata = { donor_name: name };
-  const productImages = appUrl.startsWith("https://") ? [`${appUrl}/images/accueil-chemin.jpg`] : undefined;
+  const productImages = appUrl.startsWith("https://") ? [`${appUrl}/images/accueil.jpg`] : undefined;
 
   try {
     const session = await getStripe().checkout.sessions.create({

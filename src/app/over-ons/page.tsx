@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { vzw } from "@/config/vzwData";
-import { about, values } from "@/content/copy";
+import { values } from "@/content/copy";
 import { DonateCta } from "@/components/layout/DonateCta";
 import { Container } from "@/components/ui/Container";
 
@@ -12,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 const labels = ["Acteurs associatifs", "Humanitaires", "Cadres", "Entrepreneurs"];
-const numbers = ["01", "02", "03", "04"];
 
 export default function OverOnsPage() {
   return (
@@ -21,46 +19,8 @@ export default function OverOnsPage() {
         <Container className="py-16 sm:py-24">
           <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--lime)]">L&apos;association</p>
           <h1 className="mt-4 font-display text-5xl text-[var(--on-dark)] sm:text-6xl">À propos</h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--on-dark-muted)]">
-            Une ASBL qui réunit des compétences pour l&apos;eau, l&apos;alimentation, l&apos;éducation,
-            l&apos;environnement et la culture.
-          </p>
         </Container>
       </header>
-
-      <section className="bg-[var(--bg)] py-16 sm:py-24">
-        <Container className="grid gap-14 lg:grid-cols-2">
-          <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--green-700)] dark:text-[var(--lime)]">
-              Notre mission
-            </p>
-            <h2 className="mt-3 font-display text-4xl leading-tight text-[var(--text)]">
-              L&apos;impact est décuplé lorsque les forces sont unies.
-            </h2>
-            <div className="mt-6 space-y-4 text-base leading-7 text-[var(--text-muted)]">
-              <p>{about.intro}</p>
-              {about.mission.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--green-700)] dark:text-[var(--lime)]">
-              Notre vision
-            </p>
-            <h2 className="mt-3 font-display text-4xl leading-tight text-[var(--text)]">
-              Agir vite, et pour longtemps.
-            </h2>
-            <p className="mt-6 text-base leading-7 text-[var(--text-muted)]">{about.vision}</p>
-            <blockquote className="mt-8 rounded-3xl bg-[var(--green-900)] p-8">
-              <p className="font-display text-5xl leading-none text-[var(--lime)]" aria-hidden="true">
-                “
-              </p>
-              <p className="mt-3 font-display text-2xl italic leading-snug text-[var(--on-dark)]">{vzw.slogan}</p>
-            </blockquote>
-          </div>
-        </Container>
-      </section>
 
       <section className="bg-[var(--bg-alt)] py-16 sm:py-24">
         <Container className="grid items-center gap-10 lg:grid-cols-2">
@@ -104,10 +64,9 @@ export default function OverOnsPage() {
           </p>
           <h2 className="mt-3 font-display text-4xl text-[var(--text)]">Nos valeurs</h2>
           <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value, index) => (
+            {values.map((value) => (
               <li key={value.title} className="border-t border-[var(--border)] pt-5">
-                <p className="font-display text-sm text-[var(--olive)]">{numbers[index]}</p>
-                <h3 className="mt-3 font-display text-2xl text-[var(--text)]">{value.title}</h3>
+                <h3 className="font-display text-2xl text-[var(--text)]">{value.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">{value.text}</p>
               </li>
             ))}

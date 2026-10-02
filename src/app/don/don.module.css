@@ -280,33 +280,7 @@
   font-weight: 600;
 }
 
-.methods {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.methods ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
-.methods li {
-  font-size: 12px;
-  font-weight: 700;
-  color: #3e4a43;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 5px 9px;
-}
-
-.methods p {
+.secureNote {
   margin: 0;
   font-size: 13px;
   color: var(--muted-2);
@@ -608,7 +582,8 @@
   }
 }
 
-:global(html.dark) .page {
+:global(html.dark) .page,
+:global(html[data-theme="dark"]) .page {
   --bg: #0b2219;
   --surface: #15382a;
   --text: #f5f2ea;
@@ -619,53 +594,63 @@
 }
 
 :global(html.dark) .amount,
+:global(html[data-theme="dark"]) .amount,
 :global(html.dark) .custom,
+:global(html[data-theme="dark"]) .custom,
 :global(html.dark) .customActive,
-:global(html.dark) .field input {
+:global(html[data-theme="dark"]) .customActive,
+:global(html.dark) .field input,
+:global(html[data-theme="dark"]) .field input {
   background: #0e2b1f;
   border-color: #2e5442;
 }
 
-:global(html.dark) .amountActive {
+:global(html.dark) .amountActive,
+:global(html[data-theme="dark"]) .amountActive {
   background: #c5d86d;
   border-color: #c5d86d;
   color: #0e2b1f;
 }
 
-:global(html.dark) .methods li {
-  color: #d6ddd2;
-}
-
-:global(html.dark) .error {
+:global(html.dark) .error,
+:global(html[data-theme="dark"]) .error {
   background: #3a1411;
   color: #f7c9c4;
 }
 
-:global(html.dark) .copy {
+:global(html.dark) .copy,
+:global(html[data-theme="dark"]) .copy {
   background: transparent;
   border-color: #c5d86d;
   color: #c5d86d;
 }
 
-:global(html.dark) .copy:hover {
+:global(html.dark) .copy:hover,
+:global(html[data-theme="dark"]) .copy:hover {
   background: transparent;
 }
 
-:global(html.dark) .badge {
+:global(html.dark) .badge,
+:global(html[data-theme="dark"]) .badge {
   background: #2f4a12;
   color: #e4ebc4;
 }
 
-:global(html.dark) .sectionTitle {
+:global(html.dark) .sectionTitle,
+:global(html[data-theme="dark"]) .sectionTitle {
   color: #f5f2ea;
 }
 
 :global(html.dark) .faq details,
-:global(html.dark) .faq details:last-child {
+:global(html[data-theme="dark"]) .faq details,
+:global(html.dark) .faq details:last-child,
+:global(html[data-theme="dark"]) .faq details:last-child {
   border-color: #24483a;
 }
 
 :global(html.dark) .faq summary,
-:global(html.dark) .faq p {
+:global(html[data-theme="dark"]) .faq summary,
+:global(html.dark) .faq p,
+:global(html[data-theme="dark"]) .faq p {
   color: #b7c2b4;
 }

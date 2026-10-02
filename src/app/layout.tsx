@@ -35,14 +35,14 @@ export const metadata: Metadata = {
       "Collectif Humaniterre ASBL : eau, alimentation, éducation, environnement et culture.",
     images: [
       {
-        url: "/images/accueil-chemin.jpg",
+        url: "/images/accueil.jpg",
         alt: "Membres du collectif marchent avec des enfants sur un sentier, en Guinée.",
       },
     ],
   },
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");var dark=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(dark)document.documentElement.classList.add("dark");}catch(e){}})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");var dark=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);var root=document.documentElement;root.classList.toggle("dark",dark);root.setAttribute("data-theme",dark?"dark":"light");}catch(e){}})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

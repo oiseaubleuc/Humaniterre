@@ -39,11 +39,10 @@
   justify-content: center;
 }
 
-/* Photo complète : largeur de l'écran, hauteur proportionnelle, aucun recadrage.
-   max-width (fixé dans page.tsx) = largeur réelle du fichier : jamais agrandie, donc jamais floue. */
 .heroImg {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
 }
 
@@ -104,7 +103,7 @@
 /* ---------- Qui sommes-nous ---------- */
 
 .about {
-  background: var(--olive);
+  background: #f5f2ea;
   padding: 96px 0 96px;
   text-align: center;
 }
@@ -114,52 +113,23 @@
   font-style: italic;
   font-weight: 300;
   font-size: clamp(30px, 3.5vw, 40px);
-  color: var(--lime);
+  color: #0e2b1f;
 }
 
 .aboutText {
-  margin: 0 auto 56px;
-  max-width: 620px;
+  margin: 0 auto 48px;
+  max-width: 720px;
   font-size: 17px;
   line-height: 1.6;
-  color: var(--text);
+  color: #0e2b1f;
 }
 
-.values {
-  list-style: none;
-  margin: 0 0 48px;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  text-align: left;
-}
-
-.valueCard {
-  background: var(--card);
-  border-radius: 20px;
-  padding: 24px 22px;
-}
-
-.valueNumber {
-  display: block;
-  margin-bottom: 14px;
-  font-size: 14px;
-  color: var(--lime);
-}
-
-.valueTitle {
-  margin: 0 0 10px;
-  font-weight: 500;
-  font-size: 19px;
-  color: var(--title);
-}
-
-.valueText {
+.aboutText p {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--text);
+}
+
+.aboutText p + p {
+  margin-top: 16px;
 }
 
 .center {
@@ -192,25 +162,16 @@
   outline-offset: 3px;
 }
 
-:global(html.dark) .about {
+:global(html.dark) .about,
+:global(html[data-theme="dark"]) .about {
   background: #0e2b1f;
 }
 
-:global(html.dark) .valueCard {
-  background: #15382a;
-}
-
+:global(html.dark) .aboutTitle,
+:global(html[data-theme="dark"]) .aboutTitle,
 :global(html.dark) .aboutText,
-:global(html.dark) .valueText {
+:global(html[data-theme="dark"]) .aboutText {
   color: #d5dcc0;
-}
-
-/* ---------- Tablette ---------- */
-
-@media (max-width: 760px) {
-  .values {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 /* ---------- Mobile ---------- */
@@ -226,10 +187,6 @@
 
   .aboutText {
     font-size: 16px;
-  }
-
-  .values {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .pillButton {

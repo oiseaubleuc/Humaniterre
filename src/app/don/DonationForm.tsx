@@ -153,16 +153,7 @@ export default function DonationForm() {
         </p>
       )}
 
-      <div className={styles.methods}>
-        <ul aria-label="Moyens de paiement acceptés">
-          <li>Bancontact</li>
-          <li>Visa</li>
-          <li>Mastercard</li>
-          <li>Apple Pay</li>
-          <li>Google Pay</li>
-        </ul>
-        <p>Vous serez redirigé vers une page de paiement sécurisée.</p>
-      </div>
+      <p className={styles.secureNote}>Vous serez redirigé vers une page de paiement sécurisée.</p>
     </form>
   );
 }

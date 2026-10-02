@@ -35,14 +35,3 @@ export const projects = [
     text: "Agir avec rigueur, transparence et éthique, au service du cadre de vie et de la culture.",
   },
 ] as const;
-
-export const about = {
-  intro:
-    "Le Collectif Humaniterre est une association née d'une conviction forte : l'impact humanitaire est décuplé lorsque les compétences, les énergies et les ressources sont unies.",
-  mission: [
-    "Nous rassemblons des acteurs associatifs, humanitaires, cadres et entrepreneurs engagés, qui mettent leurs expertises au service de causes essentielles : l'apport en eau potable, l'alimentation, l'éducation, l'environnement et la culture.",
-    "Au cœur de l'action, nous agissons avec des valeurs fondamentales de rigueur, de transparence et d'éthique.",
-  ],
-  vision:
-    "Face aux urgences humanitaires, nous intervenons vite, de façon à la fois immédiate et pérenne, capables de répondre à des besoins vitaux tout en renforçant l'autonomie des populations.",
-};
