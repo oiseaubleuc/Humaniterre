@@ -9,7 +9,7 @@ export const vzw = {
   kbo: "BE 1033.490.854",
   iban: "BE98363271954593",
   ibanDisplay: "BE98 3632 7195 4593",
-  bic: "ARSPBE22",
+  bic: "BBRUBEBB",
   donationReference: "Don ASBL Collectif Humaniterre",
   payconiqUrl: "",
   epcQrSrc: "/qr-epc.png",

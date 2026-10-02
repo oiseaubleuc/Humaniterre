@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 const IBAN = "BE98 3632 7195 4593";
-const BIC = "ARSPBE22";
+const BIC = "BBRUBEBB";
 const COMMUNICATION = "Don ASBL Collectif Humaniterre";
 
 // Remplace ce chemin par celui du QR code EPC déjà présent dans le projet.
