@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     "Soutenez les missions du Collectif Humaniterre en Guinée et au Bangladesh : don en ligne sécurisé (Bancontact, carte) ou virement sans frais.",
 };
 
-const IBAN = "BE38 9733 7520 9572";
-const BIC = "ARSPBE22";
+const IBAN = "BE98 3632 7195 4593";
+const BIC = "BBRUBEBB";
 const COMMUNICATION = "Don ASBL Collectif Humaniterre";
 
 // Remplace ce chemin par celui du QR code EPC déjà présent dans le projet.
