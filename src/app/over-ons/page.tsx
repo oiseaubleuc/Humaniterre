@@ -15,8 +15,7 @@ export default function OverOnsPage() {
     <main id="contenu">
       <header className="bg-[var(--green-900)] text-[var(--on-dark)]">
         <Container className="py-16 sm:py-24">
-          <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--lime)]">L&apos;association</p>
-          <h1 className="mt-4 font-display text-5xl text-[var(--on-dark)] sm:text-6xl">À propos</h1>
+          <h1 className="font-display text-5xl text-[var(--on-dark)] sm:text-6xl">À propos</h1>
         </Container>
       </header>
 
@@ -32,9 +31,6 @@ export default function OverOnsPage() {
             />
           </div>
           <div>
-            <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--green-700)] dark:text-[var(--lime)]">
-              Ensemble
-            </p>
             <h2 className="mt-3 font-display text-4xl text-[var(--text)]">Le collectif</h2>
             <p className="mt-5 text-base leading-7 text-[var(--text-muted)]">
               L&apos;association est née pour unir des acteurs associatifs, humanitaires, cadres et
@@ -47,10 +43,7 @@ export default function OverOnsPage() {
 
       <section className="bg-[var(--bg)] py-16 sm:py-24">
         <Container>
-          <p className="text-[13px] font-semibold uppercase tracking-[2.4px] text-[var(--green-700)] dark:text-[var(--lime)]">
-            Repères
-          </p>
-          <h2 className="mt-3 font-display text-4xl text-[var(--text)]">Nos valeurs</h2>
+          <h2 className="font-display text-4xl text-[var(--text)]">Nos valeurs</h2>
           <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value) => (
               <li key={value.title} className="border-t border-[var(--border)] pt-5">

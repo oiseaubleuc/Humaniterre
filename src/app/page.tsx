@@ -42,7 +42,6 @@ export default function HomePage() {
       {/* Bandeau titre */}
       <section className={styles.band}>
         <div className={styles.container}>
-          <p className={styles.eyebrow}>Collectif Humaniterre ASBL</p>
           <h1 className={styles.title}>
             L&apos;eau potable, l&apos;électricité : une norme pour nous, une urgence
             pour nos bénéficiaires.
