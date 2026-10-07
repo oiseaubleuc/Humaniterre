@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { values } from "@/content/copy";
 import { DonateCta } from "@/components/layout/DonateCta";
 import { Container } from "@/components/ui/Container";
 
@@ -38,20 +37,6 @@ export default function OverOnsPage() {
               l&apos;eau et l&apos;électricité restent une urgence.
             </p>
           </div>
-        </Container>
-      </section>
-
-      <section className="bg-[var(--bg)] py-16 sm:py-24">
-        <Container>
-          <h2 className="font-display text-4xl text-[var(--text)]">Nos valeurs</h2>
-          <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value) => (
-              <li key={value.title} className="border-t border-[var(--border)] pt-5">
-                <h3 className="font-display text-2xl text-[var(--text)]">{value.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">{value.text}</p>
-              </li>
-            ))}
-          </ul>
         </Container>
       </section>
 
