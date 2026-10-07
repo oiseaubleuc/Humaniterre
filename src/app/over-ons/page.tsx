@@ -10,8 +10,6 @@ export const metadata: Metadata = {
     "Mission, vision et histoire du Collectif Humaniterre ASBL, à Ganshoren.",
 };
 
-const labels = ["Acteurs associatifs", "Humanitaires", "Cadres", "Entrepreneurs"];
-
 export default function OverOnsPage() {
   return (
     <main id="contenu">
@@ -43,16 +41,6 @@ export default function OverOnsPage() {
               entrepreneurs. Ensemble, ils mettent leur expertise au service des personnes pour qui
               l&apos;eau et l&apos;électricité restent une urgence.
             </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {labels.map((label) => (
-                <li
-                  key={label}
-                  className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold text-[var(--text)]"
-                >
-                  {label}
-                </li>
-              ))}
-            </ul>
           </div>
         </Container>
       </section>

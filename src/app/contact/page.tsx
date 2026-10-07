@@ -14,11 +14,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main id="contenu">
-      <PageIntro
-        eyebrow="Échange"
-        title="Contact"
-        text="Un message, un appel ou une visite : l'ASBL est joignable directement."
-      />
+      <PageIntro title="Contact" />
       <Container className="grid gap-12 py-14 lg:grid-cols-2 sm:py-16">
         <ContactForm />
         <address className="not-italic">
@@ -42,7 +38,7 @@ export default function ContactPage() {
               </a>
             </li>
             <li className="text-[var(--text-muted)]">
-              N° d&apos;entreprise (BCE){" "}
+              N° d&apos;entreprise{" "}
               <span className="font-medium text-[var(--text)]">{vzw.kbo}</span>
             </li>
           </ul>
